@@ -1,23 +1,35 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, StyleSheet, Platform} from 'react-native'
 import {THEME} from '../theme'
+import {AppText} from './ui/AppText'
 
 export const Navbar = props => (
-  <View style={styles.navbar}>
-    <Text style={styles.text}>{props.title}</Text>
+  <View
+    style={{...styles.navbar, ...Platform.select({
+      ios: styles.navbarIOS,
+      android: styles.navbarAndroid
+    })}}
+  >
+    <AppText type="bold" style={styles.text}>{props.title}</AppText>
   </View>
 )
 
 const styles = StyleSheet.create({
   navbar: {
+    height: 70,
     alignItems: 'center',
     justifyContent: 'flex-end',
-    height: 70,
-    backgroundColor: THEME.MAIN_COLOR,
     paddingBottom: 10
   },
+  navbarAndroid: {
+    backgroundColor: THEME.MAIN_COLOR,
+  },
+  navbarIOS: {
+    borderBottomColor: THEME.MAIN_COLOR,
+    borderBottomWidth: 1
+  },
   text: {
-    color: THEME.WHITE_COLOR,
+    color: Platform.OS === 'ios' ? THEME.WHITE_COLOR : '#fff',
     fontSize: 20
   }
 })
