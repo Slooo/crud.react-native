@@ -1,12 +1,16 @@
-import {ADD_TODO, REMOVE_TODO, UPDATE_TODO} from '../constants'
+import {
+  ADD_TODO, REMOVE_TODO, UPDATE_TODO,
+  SHOW_ERROR, HIDE_ERROR, SHOW_LOADER,
+  HIDE_LOADER, CLEAR_ERROR, FETCH_TODOS
+} from '../constants'
 
 const handlers = {
-  [ADD_TODO]: (state, {title}) => ({
+  [ADD_TODO]: (state, {id, title}) => ({
     ...state,
     todos: [
       ...state.todos,
       {
-        id: Date.now().toString(),
+        id,
         title
       }
     ]
@@ -24,6 +28,11 @@ const handlers = {
     ...state,
     todos: state.todos.filter(todo => todo.id !== id)
   }),
+  [SHOW_LOADER]: state => ({...state, loading: true}),
+  [HIDE_LOADER]: state => ({...state, loading: false}),
+  [CLEAR_ERROR]: state => ({...state, error: null}),
+  [SHOW_ERROR]: (state, {error}) => ({...state, error}),
+  [FETCH_TODOS]: (state, {todos}) => ({...state, todos}),
   DEFAULT: state => state
 }
 
