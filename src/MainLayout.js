@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react'
-import {StyleSheet, View, Alert} from 'react-native'
+import React, {useContext} from 'react'
+import {StyleSheet, View} from 'react-native'
 import {Navbar} from './components/Navbar'
 import {THEME} from './theme'
 import {MainScreen} from './screens/MainScreen'
