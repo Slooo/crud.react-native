@@ -4,6 +4,7 @@ import {
   HIDE_LOADER, CLEAR_ERROR, FETCH_TODOS
 } from '../constants'
 
+
 const handlers = {
   [ADD_TODO]: (state, {id, title}) => ({
     ...state,
